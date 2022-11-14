@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="jdbc.properties"/>
+    <!--    mybatis标准日志的实现-->
+    <settings>
+        <!--        <setting name="logImpl" value="STDOUT_LOGGING"/>-->
+        <setting name="logImpl" value="SLF4J"/>
+    </settings>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+                <!--                连接池最多使用的连接对象的上限，最多有多少个连接可以活动-->
+                <property name="poolMaximumActiveConnections" value="3"/>
+                <!--                每隔两秒打印日志，并且尝试获取连接对象-->
+                <property name="poolTimeToWait" value="2000"/>
+<!--                强行让某个连接空闲，超过时间的设置-->
+                <property name="poolMaximumCheckoutTime" value="10000"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="CarMapper.xml"/>
+    </mappers>
+</configuration>

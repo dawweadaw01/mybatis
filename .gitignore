@@ -1,0 +1,6 @@
+# 项目排除路径
+/junit/target/
+/mybatis-001-introduction/target/
+/mybatis-002-crud/target/
+/mybatis-003-configuration/target/
+/parse-xml-by-dom4j/target/
