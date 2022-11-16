@@ -22,6 +22,7 @@ public class AccountServlet extends HttpServlet {
         String fromActno = request.getParameter("fromActno");
         String toActno = request.getParameter("toActno");
         String money = request.getParameter("money");
+        System.out.println(request.getContextPath());
         //调用service的转账方法完成转账
         try {
             accountService.transfer(fromActno, toActno, Double.valueOf(money));
@@ -34,11 +35,5 @@ public class AccountServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath()+"/error2.html");
 
         }
-        catch (Exception e) {
-            response.sendRedirect(request.getContextPath()+"/error2.html");
-
-        }
-
-
     }
 }

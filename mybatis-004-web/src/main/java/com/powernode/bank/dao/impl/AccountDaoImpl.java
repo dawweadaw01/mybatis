@@ -9,14 +9,12 @@ public class AccountDaoImpl implements AccountDao {
     @Override
     public Account selectAccountByActno(String actno) {
         SqlSession sqlSession = SqlSessionUtil.openSession();
-        Account account = (Account) sqlSession.selectOne("account.selectAccountByActno", actno);
-        return account;
+        return sqlSession.selectOne("com.powernode.bank.dao.AccountDao.selectAccountByActno", actno);
     }
 
     @Override
     public int updateAccountByActno(Account account) {
         SqlSession sqlSession = SqlSessionUtil.openSession();
-        int count = sqlSession.update("account.updateAccountByActno", account);
-        return count;
+        return sqlSession.update("com.powernode.bank.dao.AccountDao.updateAccountByActno", account);
     }
 }
