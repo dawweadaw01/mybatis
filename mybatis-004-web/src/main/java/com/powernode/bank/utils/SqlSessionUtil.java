@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import java.io.IOException;
 
 public class SqlSessionUtil {
-    private static SqlSessionFactory sqlSessionFactory;
+    private static final SqlSessionFactory sqlSessionFactory;
     private SqlSessionUtil() {}
     static {
         try {
@@ -21,7 +21,7 @@ public class SqlSessionUtil {
     /**
      * 进程内共享一个SqlSession
      */
-    private static ThreadLocal<SqlSession> local = new ThreadLocal<>();
+    private static final ThreadLocal<SqlSession> local = new ThreadLocal<>();
     public static SqlSession openSession() {
         SqlSession sqlSession = local.get();
         if (sqlSession == null) {

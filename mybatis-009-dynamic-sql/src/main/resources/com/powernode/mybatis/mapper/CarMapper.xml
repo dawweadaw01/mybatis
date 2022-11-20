@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.powernode.mybatis.mapper.CarMapper">
+    <insert id="insertBatch">
+        insert into t_car
+        values
+        <foreach collection="cars" item="car" separator=",">
+            (null,#{car.car_num},#{car.brand},#{car.guide_price},#{car.produce_time},#{car.car_type})
+        </foreach>
+    </insert>
+    <delete id="deleteById">
+        delete from t_car where
+        <foreach collection="ids" separator="or" item="id">
+            id = #{id}
+        </foreach>
+    </delete>
+
+    <select id="selectByMultiCondition" resultType="com.powernode.mybatis.pojo.Car">
+        select * from t_car where 1 = 1
+        <if test="brand != null and brand != ''">
+            and brand like concat('%',#{brand},'%')
+        </if>
+        <if test="guide_price != null and guide_price != ''">
+            and guide_price>#{guide_price}
+        </if>
+        <if test="car_type != null and car_type!= ''">
+            and car_type = #{car_type}
+        </if>
+    </select>
+    <select id="selectByMultiConditionWithWhere" resultType="com.powernode.mybatis.pojo.Car">
+        select * from t_car
+        <where>
+            <if test="brand != null and brand != ''">
+                and brand like concat('%',#{brand},'%')
+            </if>
+            <if test="guide_price != null and guide_price != ''">
+                and guide_price>#{guide_price}
+            </if>
+            <if test="car_type != null and car_type!= ''">
+                and car_type = #{car_type}
+            </if>
+        </where>
+    </select>
+</mapper>

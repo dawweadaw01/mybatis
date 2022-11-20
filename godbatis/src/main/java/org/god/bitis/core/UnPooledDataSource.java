@@ -14,9 +14,9 @@ import java.util.logging.Logger;
  * @version 1.0
  */
 public class UnPooledDataSource implements javax.sql.DataSource{
-    private String url;
-    private String username;
-    private String password;
+    private final String url;
+    private final String username;
+    private final String password;
 
     public UnPooledDataSource(String driver, String url, String username, String password) {
         //驱动注册

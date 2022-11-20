@@ -11,7 +11,7 @@ import com.powernode.bank.utils.SqlSessionUtil;
 import org.apache.ibatis.session.SqlSession;
 
 public class AccountServiceImpl implements AccountService {
-   private AccountDao accountDao = new AccountDaoImpl();
+   private final AccountDao accountDao = new AccountDaoImpl();
     //private AccountDao accountDao = (AccountDao)GenerateDaoProxy.generate(SqlSessionUtil.openSession(), AccountDao.class);
     @Override
     public void transfer(String fromActno, String toActno, Double money) throws MoneyNotEnoughException, TransferException {

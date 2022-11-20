@@ -8,7 +8,12 @@ public interface CarMapper {
 
     List<Car> selectByCarType(String carType);
 
+    int insertCarUseGeneratedKeys(Car car);
+
     int deleteBatch(String ids);
+
     List<Car> selectByCar(String carType);
+
+    List<Car> selectAll();
 
 }
